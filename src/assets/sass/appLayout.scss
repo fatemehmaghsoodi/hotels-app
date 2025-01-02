@@ -1,0 +1,40 @@
+.appLayout{
+    display: flex;
+    justify-content: space-between;
+    // align-items: stretch;
+    height: 100vh;
+    .sidebar{
+        width: 40%;
+        .searchList__item.current_hotel{
+            border: 1px solid $primary;
+        }
+        .searchList__item{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            .searchList__item__desc{
+                margin-left: 10px;
+            }
+            
+        }
+    }
+    .mapContainer{
+        width: 60%;
+        height: 100%;
+        .leaflet-container{ 
+            height: 100%;
+            width:100%;
+            
+         }
+         .getLocation{
+            position: absolute;
+            left: 5px;
+            bottom: 5px;
+            z-index: 10000;
+        }
+    }
+}
+
+
+
+
