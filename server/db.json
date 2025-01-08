@@ -1168,6 +1168,34 @@
       "latitude": 52.37170407630252,
       "longitude": 4.860401767711325,
       "host_location": "Amsterdam"
+    },
+    {
+      "id": "cde1",
+      "countryCode": "FR",
+      "latitude": 50.41843553644333,
+      "longitude": 3.492976474353671,
+      "host_location": "Raismes"
+    },
+    {
+      "id": "d2df",
+      "countryCode": "FR",
+      "latitude": 50.41843553644333,
+      "longitude": 3.492976474353671,
+      "host_location": "Raismes"
+    },
+    {
+      "id": "27dc",
+      "countryCode": "FR",
+      "latitude": 50.41843553644333,
+      "longitude": 3.492976474353671,
+      "host_location": "Raismes"
+    },
+    {
+      "id": "9b46",
+      "countryCode": "FR",
+      "latitude": 50.02570008868869,
+      "longitude": 3.938394388554954,
+      "host_location": "La Flamengrie"
     }
   ]
 }

@@ -1,0 +1,32 @@
+.mainSection{
+    margin-bottom: 100px;
+    position: relative;
+    .mainSection-cover{
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        z-index: 2;
+        opacity: 0.4;
+        background-color: black;
+    }
+    .mainSection-img{
+        height: 100%;
+        width: 100%;
+        .slideImg{
+            width: 100vw;
+            max-height: 600px;
+        }
+        .shape{
+            overflow: hidden;
+            position: absolute;
+            left: 0;
+            width: 100%;
+            line-height: 0;
+            transform: rotate(180deg);
+            bottom: -1px;
+            z-index: 2;
+        }
+    
+    }
+}
