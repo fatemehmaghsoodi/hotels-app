@@ -1,13 +1,13 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { fromAddress } from 'react-geocode';
-import toast from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+
 const BASE_URL = "https://6776555d12a55a9a7d0b4c7c.mockapi.io/hotel/v1"
 const URL = "https://api-bdc.net/data/reverse-geocode-client"
+
 function AddBookmark() {
   const [geoLocation, setGeoLocation] = useState({})
-  
   const [cityName, setCityName] = useState(geoLocation?.city);
   const [country, setCountry] = useState(geoLocation? geoLocation.countryName: "");
 
@@ -40,8 +40,8 @@ function AddBookmark() {
       host_location: geoLocation.locality	,
 
     }
-    axios.post(`${BASE_URL}/bookmarks`, locationInfo).
-    then((res)=>{toast.success("new bookmark added")})
+    axios.post(`${BASE_URL}/bookmarks`, locationInfo)
+    .then((res)=>{toast.success(`'${res.data.cityName}' added to bookmark list`)})
     .catch((err)=>{toast.error("new bookmark added")})
 }
   return (
@@ -65,7 +65,7 @@ function AddBookmark() {
         </div>
         <div className="addBookmarkForm_btn">
           <button onClick={()=>navigate(-1)}>&larr; back </button>
-          <button type='submit'>add new bookmark</button>
+          <button type="submit">add new bookmark</button>
         </div>
     </form>
   )

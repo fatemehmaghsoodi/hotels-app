@@ -10,7 +10,9 @@ a{
     text-decoration: none;
     color: #000;
 }
-
+button:hover{
+ cursor: pointer;
+}
 input{
     border: none; /* <-- This thing here */
     border:solid 1px #ccc;

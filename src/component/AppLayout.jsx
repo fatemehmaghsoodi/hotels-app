@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom'
 import Map from './Map'
 import { useHotelContext } from '../context/HotelProvider'
 import Header from './Header'
+import { Toaster } from 'react-hot-toast'
 import PageInfo from './PageInfo'
 
 function AppLayout() {
@@ -10,6 +11,7 @@ function AppLayout() {
   const [info, setInfo] = useState(true);
   return (
     <>
+   
     {info && <PageInfo onClose={()=>setInfo(false)}>
           1-با کلیک روی هر آیتم به صفحه اطلاعات بیشتر هتل مورد نظر هدایت میشوید
           <br/>
