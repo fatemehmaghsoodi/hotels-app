@@ -65,7 +65,7 @@ function AddBookmark() {
         </div>
         <div className="addBookmarkForm_btn">
           <button onClick={()=>navigate(-1)}>&larr; back </button>
-          <button >add new bookmark</button>
+          <button type='submit'>add new bookmark</button>
         </div>
     </form>
   )
