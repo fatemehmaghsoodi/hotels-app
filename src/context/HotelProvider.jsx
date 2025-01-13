@@ -2,22 +2,23 @@ import axios from 'axios';
 import React,{ createContext, useContext, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import useFetch from '../hook/useFetch'
+import toast from 'react-hot-toast';
 const HotelContext = createContext();
 
 function HotelProvider({children}) {
-  const url ="http://localhost:5000/hotels"
+  const url ="https://6776555d12a55a9a7d0b4c7c.mockapi.io/hotels"
   const[searchParams,setSearchParams] = useSearchParams()
-  const room=JSON.parse(searchParams.get('options'))?.room
+  if(!searchParams) return null
+  const room= JSON.parse(searchParams.get('options'))?.room
   const destination = searchParams.get('destination')
-  const{data, isLoading} = useFetch(url, `host_name_like=${destination}&accommodates_gte=${room}`)
+  const{data, isLoading} = useFetch(url, `search=${destination || null}&accommodates=${room || 1}`)
   const [currentHotel, setCurrentHotel] = useState({});
-
   async function getCurrentHotel(id) {
     try {
       const {data} = await axios.get(`${url}/${id}`)
       setCurrentHotel(data)
     } catch (error) {
-      
+      toast.error(error.maessage)
     }  
   }
   

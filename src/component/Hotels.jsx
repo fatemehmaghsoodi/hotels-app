@@ -4,19 +4,23 @@ import { useHotelContext } from '../context/HotelProvider'
 
 function Hotels() {
 const{data, isLoading, currentHotel} = useHotelContext()
-
-  if(!isLoading) return <div>loading data ...</div>
+  
+  // if(!isLoading) return <div>loading data ...</div>
   return (
     <div className="searchList">
-       <h2>{data.length}</h2>
+      <div className="searchList-header">
+        <h2> search result ({data.length})</h2>
+        <Link to={`/bookmark`}>go to bookmarks list</Link>
+      </div>
        {data.map((item)=>
           <Link
-           key={item.id} to={`/hotels/${item.id}?lat=${item.latitude}&lan=${item.longitude}`}>
+           key={item.id} to={`/hotels/${item.id}?lat=${item.latitude}&lng=${item.longitude}`}>
               <div className={`searchList__item ${item.id === currentHotel.id ?'current_hotel' : ''}`}>
                 <img src={item.thumbnail_url} alt="" />
                 <div className="searchList__item__desc">
                   <p>{item.name}</p>
-                  <span></span>
+                  <p className="location">{item.smart_location}</p>
+                  <span>{item.price} $</span>
                 </div>
               </div>
           </Link>

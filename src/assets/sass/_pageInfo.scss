@@ -1,0 +1,26 @@
+.pageInfo{
+    width: 100%;
+    position: fixed;
+    z-index: 20;
+    direction: rtl;
+    bottom: 15px;
+    right: 15px;
+    div{
+        border-radius: 10px;
+        padding:15px 10px;
+        display: flex;
+        flex-direction: column;
+        background-color:$secondary-200;
+        width: 300px;
+        // margin: auto;
+        // min-height: 80px;
+        height: auto;
+        color: $base;
+        button{
+            // margin-top: px;
+            width: 100px;
+            height: 30px;
+            margin:15px auto 3px auto;
+        }
+    }
+}

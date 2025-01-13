@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { CiLocationOn, CiCalendar, CiSearch } from "react-icons/ci";
 import { createSearchParams, useNavigate, useSearchParams } from 'react-router-dom';
 import useOutSideClick from '../hook/useOutSideClick';
-import {DateRangePicker, DateRange} from 'react-date-range';
+import {DateRange} from 'react-date-range';
 import 'react-date-range/dist/styles.css'; 
 import 'react-date-range/dist/theme/default.css'; 
 import { format } from 'date-fns';
@@ -12,7 +12,7 @@ import { format } from 'date-fns';
 function Header() {
     const [destination, setDestination] = useState("")
     const [isOptionOpen, setIsOptionOpen] = useState();
-    const [options, setOptions] = useState({adult:5, child:2, room:1});
+    const [options, setOptions] = useState({adult:1, child:0, room:1});
     const [searchParams, setSearchParams]=useSearchParams();
     const [isDateOpen, setIsDateOpen] = useState(false);
     const [selectionRange, setSelectionRange] = useState( {
@@ -52,14 +52,12 @@ function Header() {
 
     return (
     <div className="header">
-        <div className="header__logo">
-            <h2>HOME</h2>
-        </div>
         <div className="header__search">
             <div className="header__search_item">
                 <div className="header__search_item_input">
                     <span><CiLocationOn/></span>
                     <input type="text" 
+                     value={destination}
                      onChange={(e)=>setDestination(e.target.value)}
                      placeholder='where is go?' 
                     />
@@ -103,9 +101,9 @@ function OptionsList({options, handleOption, setIsOptionOpen}){
     useOutSideClick(optionRef, ()=>setIsOptionOpen((is)=>!is))
     return(
         <div ref={optionRef} className="header__search_item_options">
+            <Option type="room" limit='1' options={options} handleOption={handleOption} />
             <Option type="adult" limit='1' options={options} handleOption={handleOption} />
             <Option type="child" limit='0' options={options} handleOption={handleOption} />
-            <Option type="room" limit='1' options={options} handleOption={handleOption} />
         </div>
     )
 }

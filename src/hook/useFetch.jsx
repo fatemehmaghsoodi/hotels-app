@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import toast from 'react-hot-toast';
 
 function useFetch(url, query="" ) {
     const [data, setData] = useState([]);
@@ -8,11 +9,12 @@ function useFetch(url, query="" ) {
         async function fetchData(){
             try {
                 setIsLoading(true)
+                setIsLoading(true)
                 const {data} =await axios.get(`${url}?${query}`)
                 setData(data) 
             } catch (error) {
                 setIsLoading(false)
-                throw new Error(error.response.message)
+                toast.error("Something is wrong.")
             }
             }
         fetchData()

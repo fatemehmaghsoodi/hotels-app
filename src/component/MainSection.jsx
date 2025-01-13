@@ -9,18 +9,9 @@ import "swiper/css";
 import 'swiper/css/autoplay';
 import { Autoplay } from 'swiper/modules'; 
 function MainSection() {
-  // const [slide, setslide] = useState(1);
-
-  // useEffect(() => {
-    
-  //   return () => {
-      
-  //   };
-  // }, []);
-
 
   return (
-    <div className="mainSection">
+      <>
       <div className="mainSection-cover"></div>
       <div className="mainSection-img">
         <Swiper
@@ -32,8 +23,6 @@ function MainSection() {
         modules={[Autoplay]}
         spaceBetween={50}
         slidesPerView={1}
-        onSlideChange={() => console.log('slide change')}
-        onSwiper={(swiper) => console.log(swiper)}
       >
         <SwiperSlide data-swiper-autoplay="5000"><img className="slideImg" src={slider} alt="" />	</SwiperSlide>
         <SwiperSlide data-swiper-autoplay="5000"><img className="slideImg" src={slider2} alt="" /></SwiperSlide>
@@ -45,7 +34,7 @@ function MainSection() {
       </div>
     
     </div>
-    </div>
+    </>
   )
 }
 

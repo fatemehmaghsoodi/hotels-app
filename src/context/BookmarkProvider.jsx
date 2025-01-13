@@ -1,10 +1,9 @@
 import axios from 'axios';
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import toast from 'react-hot-toast';
-import { useParams } from 'react-router-dom';
 import useFetch from '../hook/useFetch';
 
-const BASE_URL = "http://localhost:5000"
+const BASE_URL = "https://6776555d12a55a9a7d0b4c7c.mockapi.io/hotel/v1"
 const BookmarkContext= createContext()
 
 function BookmarkProvider({children}) {

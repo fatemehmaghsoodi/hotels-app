@@ -1,24 +1,25 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { fromAddress } from 'react-geocode';
+import toast from 'react-hot-toast';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-const BASE_URL = "http://localhost:5000"
+const BASE_URL = "https://6776555d12a55a9a7d0b4c7c.mockapi.io/hotel/v1"
 const URL = "https://api-bdc.net/data/reverse-geocode-client"
 function AddBookmark() {
   const [geoLocation, setGeoLocation] = useState({})
   
   const [cityName, setCityName] = useState(geoLocation?.city);
   const [country, setCountry] = useState(geoLocation? geoLocation.countryName: "");
-  console.log(country);
-    const navigate = useNavigate()
+
+  const navigate = useNavigate()
     const [search, setsearch] = useSearchParams();
-    const lan= JSON.parse(search.get("lan"))
+    const lat= JSON.parse(search.get("lat"))
     const lng= JSON.parse(search.get("lng"))
 
    useEffect(() => {
       async function getGeoLocation(){
         try {
-            const {data} = await axios.get(`${URL}?latitude=${lan}&longitude=${lng}`)
+            const {data} = await axios.get(`${URL}?latitude=${lat}&longitude=${lng}`)
             setGeoLocation(data)
         } catch (error) {
           
@@ -26,13 +27,13 @@ function AddBookmark() {
         
       }
       getGeoLocation()
-   }, [lan, lng]);
+   }, [lat, lng]);
 
    const handleAddBookmark = (e)=>{
     e.preventDefault()
     const locationInfo={
-      cityName:cityName,
-      country,
+      cityName:geoLocation.city,
+      country:geoLocation.countryName,
       countryCode: geoLocation.countryCode,
       latitude: geoLocation.latitude,
       longitude: geoLocation.longitude,
@@ -40,12 +41,12 @@ function AddBookmark() {
 
     }
     axios.post(`${BASE_URL}/bookmarks`, locationInfo).
-    then((res)=>{console.log(res)})
-    .catch((err)=>{console.log(err)})
+    then((res)=>{toast.success("new bookmark added")})
+    .catch((err)=>{toast.error("new bookmark added")})
 }
   return (
-    <form onSubmit={handleAddBookmark}>
-        <div>
+    <form onSubmit={handleAddBookmark} className="addBookmarkForm">
+        <div className="addBookmarkForm_input">
           <label htmlFor='cityName'>city name</label>
           <input 
           value={geoLocation.city} 
@@ -53,7 +54,7 @@ function AddBookmark() {
           onChange={(e)=>setCityName(e.target.value)} 
           />
         </div>
-        <div>
+        <div className="addBookmarkForm_input">
           <label htmlFor='country'>country name</label>
           <input 
           value={geoLocation.countryName} 
@@ -62,8 +63,10 @@ function AddBookmark() {
           onChange={(e)=>setCountry(e.target.value)} 
           />
         </div>
-        <button >add new bookmark</button>
-        <button onClick={()=>navigate(-1)}>&larr; back </button>
+        <div className="addBookmarkForm_btn">
+          <button onClick={()=>navigate(-1)}>&larr; back </button>
+          <button >add new bookmark</button>
+        </div>
     </form>
   )
 }

@@ -11,35 +11,30 @@ import useGeoLocation from '../hook/useGeoLocation'
 
 function Map({markerLocations}) {
     
-    const [mapCenter, setMapCenter] = useState([50,4]);
     const [searchParams, setSearchPArams] = useSearchParams()
+    const lng = Number(searchParams.get('lng'))
     const lat = Number(searchParams.get('lat'))
-    const lan = Number(searchParams.get('lan'))
-    useEffect(() => {
-      if(lan && lat) {
-        setMapCenter([lat, lan])
-      }
-      return () => {};
-    }, [lat, lan]);
 
     const handleMyPosition = ()=> {
       // useGeoLocation()
     }
   return (
-    <MapContainer id="map" center={mapCenter} zoom={13} scrollWheelZoom={false}>
+    <MapContainer id="map" center={[lat || 40, lng || -3]} zoom={13} scrollWheelZoom={true}>
       <button onClick={handleMyPosition} className="getLocation">your location</button>
     <TileLayer
       attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
     />
-    <ChangeMapCenter position={mapCenter} />
     <DetectClick/>
     {markerLocations.map((item)=>
+    <>
+    <ChangeMapCenter position={[lat || item.latitude, lng ||  item.longitude]} />
       <Marker key={item.id} position={[item.latitude, item.longitude]}>
         <Popup>
          {item.name}
         </Popup>
       </Marker>
+      </>
     )}
     
   </MapContainer>
@@ -57,7 +52,7 @@ function ChangeMapCenter({position}){
 function DetectClick(){
   const navigate = useNavigate()
   useMapEvent({
-    click :e => navigate(`/bookmark/add/?lan=${e.latlng.lat}&lng=${e.latlng.lng}`)
+    click :e =>navigate(`/bookmark/add/?lat=${e.latlng.lat}&lng=${e.latlng.lng}`)
   })
   return null
 }

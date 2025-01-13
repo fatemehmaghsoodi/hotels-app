@@ -1,5 +1,4 @@
 import { Route, Routes } from 'react-router-dom'
-import AppLayout from './pages/AppLayout'
 import Hotel from './component/Hotel'
 import Layout from './component/Layout'
 import Home from './pages/Home'
@@ -10,6 +9,7 @@ import AddBookmark from './component/AddBookmark'
 import BookmarkList from './component/BookmarkList'
 import BookmarkProvider from './context/BookmarkProvider'
 import SingleBookmark from './component/SingleBookmark'
+import AppLayout from './component/AppLayout'
 
 function App() {
 

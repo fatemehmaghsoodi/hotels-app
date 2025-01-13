@@ -1,38 +1,65 @@
 .header{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+    position: absolute;
+    width: 100%;
+    z-index: 5;
+    
     .header__search{
-        width: 75%;
-        border:1px solid $primary;
+        width: 70%;
+        margin: 10px auto;
         border-radius: 15px;
         display: flex;
         justify-content: space-between;
         align-items: stretch;
-
         .header__search_item{
+            width: 100%;
+            height: 30px;
+            margin:0 5px ;
             position: relative;
             display: flex;
             align-items: center;
+            justify-content: center;
             padding: 10px;
-
+            border-radius: 15px;
+            background-color: $base-200;
+            white-space: nowrap;
             .header__search_item_input{
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                span{
+                    color:$secondary-100;
+                    font-size: 24px;
+                }
                 input{
+                    width: 100%;
+                    height: 30px;
                     border: none;
+                    background-color: transparent;
                     margin-left: 5px;
                     &:focus{
                         outline: none;
                     }
                 }
             }
-            .header__search_item_date span{
-               margin-left: 5px;
+            .header__search_item_date {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                span{
+                    margin-right: 2px;
+                    :last-child{
+                        font-size: 24px;
+                        color:$secondary-100
+                    }
+                }
             }
             .header__search_item_calender{
                 position: absolute;
                 top: 100%;
                 border: 1px solid $primary;
                 margin-top: 5px;
+                z-index: 16;
             }
             .header__search_item_options{
                 position: absolute;
@@ -41,6 +68,8 @@
                 border: 1px solid $primary;
                 border-radius: 10px;
                 margin-top: 5px;
+                z-index: 15;
+                background-color: $base-200;
                 .header__search_item_options_option{
                     display: flex;
                     justify-content: space-around;
@@ -48,6 +77,26 @@
                     padding: 5px 10px;
                  }
             }
+            &:last-child{
+                width: 60px;
+                .btn{
+                    border: none;
+                    background-color: transparent;
+                    color:$secondary-100;
+                    font-size: 24px;
+                }
+            }  
+        }
+        @media screen and (max-width:760px) {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            justify-content: center;
+            align-items: center;
+        }
+        @media screen and (max-width:960px) and (min-width:760px) {
+            width: 90%;
         }
     }
+    
 }

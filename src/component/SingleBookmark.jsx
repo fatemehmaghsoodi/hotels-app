@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useBookmark } from '../context/BookmarkProvider'
 import useFetch from '../hook/useFetch'
 import Loader from './Loader'
-const BASE_URL = "http://localhost:5000"
+const BASE_URL = "https://6776555d12a55a9a7d0b4c7c.mockapi.io"
 
 function SingleBookmark() {
     const {id} = useParams()
@@ -20,7 +20,6 @@ function SingleBookmark() {
 
   return (
     <div>
-      <Toaster />
         {currentBookmark.cityName}
         <button onClick={()=>navigate(-1)}> &larr; back</button>
     </div>
